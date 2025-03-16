@@ -20,8 +20,14 @@ export const authOptions = {
           user: process.env.EMAIL_USER,
           pass: process.env.EMAIL_PASSWORD,
         },
-        secure: process.env.EMAIL_SECURE === "true",
+        secure: true,
+        tls:{
+          rejectUnauthorized: false,
+        },
+        // debug: true, // Enable debugging
+        // logger: true, // Enable logging
       },
+      
       from: process.env.EMAIL_FROM,
       // Custom sendVerificationRequest function to use our TOTP system
       async sendVerificationRequest({ identifier: email, url }) {
